@@ -1,11 +1,60 @@
 #!/bin/bash
 
-SYSVER="10_15_6"
-
 FILENAME=$1
-NULLPATH=${FILENAME%/*}
-OUTPUTFILE="${NULLPATH}/${SYSVER}_links.txt"
-OUTPUTCDNFILE="${NULLPATH}/${SYSVER}_cdn_links.txt"
+REPOURL="https://raw.githubusercontent.com/verynerd/macOS/master/"
+CDNREPO="https://cdn.jsdelivr.net/gh/verynerd/macOS@resources/"
+
+PS3='Specify the version of macOS you want:'
+options=("macOS 10.14.6" "macOS 10.15.6" "macOS 10.16 Beta 7" "Quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "macOS 10.14.6")
+            SYSVER="10_14_6"
+            URL="${REPOURL}${SYSVER}_links.txt"
+            break
+            ;;
+        "macOS 10.15.6")
+            SYSVER="10_15_6"
+            URL="${REPOURL}${SYSVER}_links.txt"
+            break
+            ;;
+        "macOS 10.16 Beta 7")
+            SYSVER="10_16_Beta7"
+            SYSVER="10_16_Beta7"
+            URL="${REPOURL}${SYSVER}_links.txt"
+            break
+            ;;
+        "Quit")
+            echo ""    
+            break
+            ;;
+        *) echo "Invalied input";;
+    esac
+done
+
+PS3='Specify the which download source you want:'
+options=("Github" "CDN accelerated" "Quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Github")
+            URL="${REPOURL}${SYSVER}_links.txt"
+            break
+            ;;
+
+        "CDN accelerated")
+            URL="${REPOURL}${SYSVER}_cdn_links.txt"
+            break
+            ;;
+
+        "Quit")
+            echo ""    
+            break
+            ;;
+        *) echo "Invalied input";;
+    esac
+done
 
 
 if [[ -d ~/Downloads/macOS ]]; then
@@ -17,14 +66,11 @@ else
 	mkdir ~/Downloads/macOS && cd  ~/Downloads/macOS
 fi
 
-URL="https://raw.githubusercontent.com/verynerd/macOS/master/10_15_6_links.txt"
-# URL="https://raw.githubusercontent.com/verynerd/macOS/master/10_15_6_cdn_links.txt"
-
-
 # 下载 plist 文件
 wget -q --show-progress --no-check-certificate -O links.txt $URL 
 
 echo "Downloading split files..."
 mkdir splits && wget -q --show-progress --no-check-certificate -i links.txt -P splits 
 
-cat splits/10_15_6.dmg* > 10_15_6.dmg 
+cat splits/${SYSVER}.dmg* > ${SYSVER}.dmg 
+rm -R splits
