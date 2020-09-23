@@ -7,7 +7,7 @@ NULLPATH=${FILENAME%/*}
 OUTPUTFILE="${NULLPATH}/${SYSVER}_links.txt"
 OUTPUTCDNFILE="${NULLPATH}/${SYSVER}_cdn_links.txt"
 
-REPOROOT="https://github.com/verynerd/macOS/tree/resources/"
+REPOROOT="https://raw.githubusercontent.com/verynerd/macOS/resources/"
 CDNREPO="https://cdn.jsdelivr.net/gh/verynerd/macOS@resources/"
 
 URLPRE="${REPOROOT}${SYSVER}"
@@ -18,11 +18,9 @@ if [[ -f "$OUTPUTFILE" ]] || [[ -f "$OUTPUTFILE" ]]; then
 	rm $OUTPUTFILE
 	rm $OUTPUTCDNFILE
 fi
-
 while read LINE; 
 do
 # reading each line
   echo "${URLPRE}/${LINE}" >> $OUTPUTFILE
-  echo "${URLPRECDN}/${LINE}" >> $OUTPUTCDNFILE
-  
+  echo "${URLPRECDN}/${LINE}" >> $OUTPUTCDNFILE  
 done < $FILENAME	
