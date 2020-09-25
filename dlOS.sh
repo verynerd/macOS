@@ -6,7 +6,7 @@ CDNREPO="https://cdn.jsdelivr.net/gh/verynerd/macOS@resources/"
 
 PS3='Enter the numerical number of the option: '
 echo "Specify the version of macOS you want."
-options=("macOS 10.14.6" "macOS 10.15.6" "macOS 10.16 Beta 7" "Quit")
+options=("macOS 10.14.6" "macOS 10.15.6" "macOS 10.15.7" "macOS 10.16 Beta 7" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -17,6 +17,11 @@ do
             ;;
         "macOS 10.15.6")
             SYSVER="10_15_6"
+            URL="${REPOURL}${SYSVER}_links.txt"
+            break
+            ;;
+        "macOS 10.15.7")
+            SYSVER="10_15_7"
             URL="${REPOURL}${SYSVER}_links.txt"
             break
             ;;
@@ -77,5 +82,3 @@ if [[ $SYSVER != '' ]]; then
     cat splits/${SYSVER}.dmg* > ${SYSVER}.dmg 
     rm -R splits    
 fi
-
-
