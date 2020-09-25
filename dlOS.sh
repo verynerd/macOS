@@ -1,8 +1,8 @@
 #!/bin/bash
 
 FILENAME=$1
-REPOURL="https://raw.githubusercontent.com/verynerd/macOS/master/"
-CDNREPO="https://cdn.jsdelivr.net/gh/verynerd/macOS@resources/"
+REPOURL="https://raw.githubusercontent.com/verynerd/macOS/master/links/"
+CDNREPO="https://cdn.jsdelivr.net/gh/verynerd/macOS@resources/links/"
 
 PS3='Enter the numerical number of the option: '
 echo "Specify the version of macOS you want."
