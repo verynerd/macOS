@@ -1,33 +1,38 @@
 #!/bin/bash
 
 FILENAME=$1
-REPOURL="https://raw.githubusercontent.com/verynerd/macOS/master/links/"
-CDNREPO="https://cdn.jsdelivr.net/gh/verynerd/macOS@resources/links/"
+LINKURL="https://raw.githubusercontent.com/verynerd/macOS/master/links/"
+CDNLINKURL="https://cdn.jsdelivr.net/gh/verynerd/macOS@resources/links/"
 
 PS3='Enter the numerical number of the option: '
 echo "Specify the version of macOS you want."
-options=("macOS 10.14.6" "macOS 10.15.6" "macOS 10.15.7" "macOS 10.16 Beta 7" "Quit")
+options=("macOS 10.13.6" "macOS 10.14.6" "macOS 10.15.6" "macOS 10.15.7" "macOS 10.16 Beta 7" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
+        "macOS 10.13.6")
+            SYSVER="10_13_6"
+            URL="${LINKURL}${SYSVER}_links.txt"
+            break
+            ;;
         "macOS 10.14.6")
             SYSVER="10_14_6"
-            URL="${REPOURL}${SYSVER}_links.txt"
+            URL="${LINKURL}${SYSVER}_links.txt"
             break
             ;;
         "macOS 10.15.6")
             SYSVER="10_15_6"
-            URL="${REPOURL}${SYSVER}_links.txt"
+            URL="${LINKURL}${SYSVER}_links.txt"
             break
             ;;
         "macOS 10.15.7")
             SYSVER="10_15_7"
-            URL="${REPOURL}${SYSVER}_links.txt"
+            URL="${LINKURL}${SYSVER}_links.txt"
             break
             ;;
         "macOS 10.16 Beta 7")
             SYSVER="10_16_Beta7"
-            URL="${REPOURL}${SYSVER}_links.txt"
+            URL="${LINKURL}${SYSVER}_links.txt"
             break
             ;;
         "Quit")
@@ -44,12 +49,13 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Github")
-            URL="${REPOURL}${SYSVER}_links.txt"
+            URL="${LINKURL}${SYSVER}_links.txt"
             break
             ;;
 
         "CDN accelerated")
-            URL="${REPOURL}${SYSVER}_cdn_links.txt"
+            URL="${LINKURL}${SYSVER}_cdn_links.txt"
+            echo $URL
             break
             ;;
 
