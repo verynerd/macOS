@@ -4,7 +4,7 @@
 
 #### via Terminal
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/verynerd/macOS/master/dlOS.sh)"
+sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/verynerd/macOS@master/dlOS.sh)"
 ```
 
 #### via Web broswer 
